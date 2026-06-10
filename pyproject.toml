@@ -1,0 +1,34 @@
+[project]
+name = "redalert"
+version = "0.1.0"
+description = "Monitor the Hungarian National Blood Transfusion Service (OVSZ) blood stock and alert on Telegram when a blood type runs low."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests==2.34.2",
+    "beautifulsoup4==4.15.0",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Topic :: Communications :: Chat",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black==26.5.1",
+    "ty==0.0.47",
+]
+
+[project.scripts]
+redalert = "redalert.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]

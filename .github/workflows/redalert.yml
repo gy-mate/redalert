@@ -1,0 +1,47 @@
+name: redalert
+
+on:
+  schedule:
+    # 04:00 UTC every day. GitHub cron is always in UTC.
+    - cron: "0 4 * * *"
+  workflow_dispatch:
+    inputs:
+      threshold:
+        description: "Alert threshold in days"
+        required: false
+        default: "2"
+      type:
+        description: "Blood type to watch (e.g. AB+); leave empty for all"
+        required: false
+        default: ""
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Set up Python 3.14
+        run: uv python install 3.14
+
+      - name: Install redalert
+        run: |
+          uv tool install --python 3.14 .
+          # Make the installed `redalert` entry point available on PATH.
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+      - name: Run redalert
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          THRESHOLD: ${{ github.event.inputs.threshold || '2' }}
+          BLOOD_TYPE: ${{ github.event.inputs.type || '' }}
+        run: |
+          ARGS=(--threshold "$THRESHOLD")
+          if [ -n "$BLOOD_TYPE" ]; then
+            ARGS+=(--type "$BLOOD_TYPE")
+          fi
+          redalert "${ARGS[@]}"
