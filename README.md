@@ -1,4 +1,4 @@
-# redalert 🩸
+# Red Alert 🩸
 
 A small Python CLI that checks the blood-stock levels published by the
 Hungarian National Blood Transfusion Service
