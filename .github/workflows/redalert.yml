@@ -2,8 +2,7 @@ name: redalert
 
 on:
   schedule:
-    # 04:00 UTC every day. GitHub cron is always in UTC.
-    - cron: "0 4 * * *"
+    - cron: "0 3 * * *"
   workflow_dispatch:
     inputs:
       threshold:
