@@ -5,7 +5,7 @@ Hungarian National Blood Transfusion Service
 ([OVSZ](https://www.ovsz.hu/veradas)) and sends you a **Telegram** message when
 a blood type runs low — nudging you to donate when it matters most.
 
-It is designed to run unattended as a **GitHub Action every day at 04:00 UTC**,
+It is designed to run unattended as a **GitHub Action every night**,
 but you can also run it locally at any time.
 
 ## How it works
@@ -97,7 +97,7 @@ uv run ty check src           # type-check
 ### 3. Run it daily on GitHub Actions
 
 The workflow in [.github/workflows/redalert.yml](.github/workflows/redalert.yml)
-already runs every day at 04:00 UTC (and can be triggered manually from the
+already runs every night (and can be triggered manually from the
 **Actions** tab via *Run workflow*). To enable it on your fork:
 
 1. Push this repository to GitHub.
