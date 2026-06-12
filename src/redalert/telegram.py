@@ -35,20 +35,18 @@ def credentials() -> tuple[str, str]:
 def format_message(low: list[StockLevel], threshold: int) -> str:
     """Build the Hungarian alert message for the low blood types."""
     bullets = "\n".join(
-        f"• <b>{level.blood_type}</b>: {level.text}"
+        f"• <b>{level.blood_type}</b> ({level.text})"
         for level in sorted(low, key=lambda lvl: lvl.days)
     )
     return (
-        f"🩸 <b>Alacsony vérkészlet</b>\n"
-        f"\n"
-        f"Az alábbi vércsoport(ok)ból kevesebb, mint"
-        f" {threshold} napnyi készlete maradt az OVSZ-nek:\n"
+        f"Az alábbi vércsoport(ok)ból jelenleg csak"
+        f" {threshold} napnyi készlete van az OVSZ-nek:\n"
         f"\n"
         f"{bullets}\n"
         f"\n"
         f"Ha teheted, fontold meg a véradást!\n"
         f"\n"
-        f"Helyszínek: https://www.ovsz.hu/veradas"
+        f"Helyszínek: https://www.ovsz.hu/hu/hol-adhatok-vert"
     )
 
 
