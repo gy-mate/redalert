@@ -1,6 +1,6 @@
 [project]
 name = "redalert"
-version = "0.1.0"
+version = "1.0.0"
 description = "Monitor the Hungarian National Blood Transfusion Service (OVSZ) blood stock and alert on Telegram when a blood type runs low."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -20,7 +20,7 @@ classifiers = [
 [project.optional-dependencies]
 dev = [
     "black==26.5.1",
-    "ty==0.0.47",
+    "ty==0.0.70",
 ]
 
 [project.scripts]
